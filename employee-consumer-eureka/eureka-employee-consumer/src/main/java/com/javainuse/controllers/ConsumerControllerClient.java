@@ -20,7 +20,7 @@ public class ConsumerControllerClient {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 	
-	public void getEmployee() throws RestClientException, IOException {
+	public String getEmployee() throws RestClientException, IOException {
 		
 		List<ServiceInstance> instances = discoveryClient.getInstances("EMPLOYEE-ZUUL-SERVICE");
 		ServiceInstance serviceInstance=instances.get(0);
@@ -38,7 +38,7 @@ public class ConsumerControllerClient {
 		{
 			System.out.println(ex);
 		}
-		System.out.println(response.getBody());
+		return response.getBody().toString();
 	}
 
 	private static HttpEntity<?> getHeaders() throws IOException {
